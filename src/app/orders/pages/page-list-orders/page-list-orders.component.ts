@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {OrdersService} from "../../services/orders.service";
 import {Order} from "../../../core/models/order";
 import {Observable, Subject} from "rxjs";
+import {StateOrder} from "../../../core/enums/state-order";
 
 @Component({
   selector: 'app-page-list-orders',
@@ -14,6 +15,7 @@ export class PageListOrdersComponent implements OnInit {
   public testSubject$!: Subject<string>;
   public parentCollection!: Order[];
   public parentHeaders: string[];
+  public listStateOrder = StateOrder;
   constructor(private ordersService: OrdersService) {
     this.parentHeaders = ["TjmHt", "NbJours", "TVA", "TotalHt", "TotalTtc", "Type Presta", "Client", "State"];
   }
@@ -51,4 +53,11 @@ export class PageListOrdersComponent implements OnInit {
     return resultTtc;
   }*/
 
+  onChangeState(order: Order, selectedState: any) {
+    console.log(order, selectedState.target.value);
+
+    this.ordersService.changeState(order, selectedState.target.value).subscribe(
+      (updatedOrder: Order) => order = updatedOrder
+    );
+  }
 }

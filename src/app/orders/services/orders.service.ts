@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, map, Observable, Subject, tap} from "rxjs";
 import {Order} from "../../core/models/order";
 import {environment} from "../../../environments/environment";
+import {StateOrder} from "../../core/enums/state-order";
 
 @Injectable({
   providedIn: 'root'
@@ -87,5 +88,17 @@ export class OrdersService {
 
     console.warn('Next');
     this.behaviorSubject$.next('Second message');
+  }
+
+  public changeState(order: Order, state: StateOrder): Observable<Order>{
+    //utilisation d'un spredOperator pour faire une copie de order sauf state pour lui donner une nouvelle valeur
+    const orderToUpdate = new Order({...order, state: state});
+    return this.update(orderToUpdate);
+  }
+
+  public update(order: Order): Observable<Order>{
+    return this.http.put<Order>(`${this.urlApi}/orders/${order.id}`, order).pipe(
+      map((object:Order) => new Order({...object}))
+    );
   }
 }
