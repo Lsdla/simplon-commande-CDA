@@ -9,7 +9,6 @@ import {Order} from "../../../core/models/order";
 export class TableLightComponent implements OnInit {
 
   @Input() public headers!: string[];
-  @Input() public collection!: Order[];
   constructor() { }
 
   ngOnInit(): void {

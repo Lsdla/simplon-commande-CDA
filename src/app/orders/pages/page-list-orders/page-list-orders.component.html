@@ -1,6 +1,14 @@
 <app-template-full-width [title]="'Liste des commandes'" *ngIf="parentCollection">
   <app-table-light
-    [headers]="parentHeaders"
-    [collection]="parentCollection"></app-table-light>
+    [headers]="parentHeaders">
+    <tr *ngFor="let order of parentCollection">
+      <td>{{ order.tjmHt }}</td>
+      <td>{{ order.nbJours }}</td>
+      <td>{{ order.tva }}</td>
+      <td>{{ order.typePresta }}</td>
+      <td>{{ order.client }}</td>
+      <td>{{ order.state }}</td>
+    </tr>
+  </app-table-light>
   <app-btn></app-btn>
 </app-template-full-width>
