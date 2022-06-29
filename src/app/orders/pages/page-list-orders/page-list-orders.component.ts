@@ -57,7 +57,7 @@ export class PageListOrdersComponent implements OnInit {
     console.log(order, selectedState.target.value);
 
     this.ordersService.changeState(order, selectedState.target.value).subscribe(
-      (updatedOrder: Order) => order = updatedOrder
+      (updatedOrder: Order) => order.state = updatedOrder.state
     );
   }
 }
