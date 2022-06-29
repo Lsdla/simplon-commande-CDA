@@ -22,7 +22,7 @@ export class OrdersService {
   //observable chaud:
 
   //1)- subject
-  private subject$ = new Subject<string>();
+  public subject$ = new Subject<string>();
 
   //2)-behaviorSubject (garde un état et on peut avoir la valeur à l'extérieur du scope) exemple de discussion
   //de groupe dans un subject si on ajoute quelqu'un à une discussion il ne verra pas ce qui s'est dit avant contrairement

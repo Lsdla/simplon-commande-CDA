@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {OrdersService} from "../../services/orders.service";
 import {Order} from "../../../core/models/order";
+import {Observable, Subject} from "rxjs";
 
 @Component({
   selector: 'app-page-list-orders',
@@ -9,6 +10,8 @@ import {Order} from "../../../core/models/order";
 })
 export class PageListOrdersComponent implements OnInit {
 
+  public collection$!: Observable<Order[]>;
+  public testSubject$!: Subject<string>;
   public parentCollection!: Order[];
   public parentHeaders: string[];
   constructor(private ordersService: OrdersService) {
@@ -16,12 +19,23 @@ export class PageListOrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ordersService.collection$.subscribe(
+    /*this.ordersService.collection$.subscribe(
       (data: Order[]) => {
         this.parentCollection = [...data];
         console.log(this.parentCollection = [...data]);
       }
-    )
+    )*/
+
+    this.collection$ = this.ordersService.collection$;
+
+    this.collection$ = this.ordersService.collection$;
+    // test
+    this.testSubject$ = this.ordersService.subject$;
+
+    setTimeout(() => {
+      this.ordersService.subject$.next("Coucou");
+    }, 5000);
+
   }
 
   /**

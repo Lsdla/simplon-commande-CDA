@@ -1,4 +1,4 @@
-<app-template-full-width [title]="'Liste des commandes'" *ngIf="parentCollection">
+<app-template-full-width [title]="'Liste des commandes'" *ngIf="collection$ | async as parentCollection">
   <app-table-light
     [headers]="parentHeaders">
     <tr *ngFor="let order of parentCollection">
@@ -15,4 +15,6 @@
     </tr>
   </app-table-light>
   <app-btn></app-btn>
+  <p> {{ testSubject$ | async }}</p>
+  <h1 *ngIf="testSubject$ | async as testText">{{ testText }}</h1>
 </app-template-full-width>
