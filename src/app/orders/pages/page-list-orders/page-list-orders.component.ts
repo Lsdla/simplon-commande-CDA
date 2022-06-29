@@ -12,7 +12,7 @@ export class PageListOrdersComponent implements OnInit {
   public parentCollection!: Order[];
   public parentHeaders: string[];
   constructor(private ordersService: OrdersService) {
-    this.parentHeaders = ["TjmHt", "NbJours", "TVA", "Type Presta", "Client", "State"];
+    this.parentHeaders = ["TjmHt", "NbJours", "TVA", "TotalHt", "TotalTtc", "Type Presta", "Client", "State"];
   }
 
   ngOnInit(): void {
@@ -23,5 +23,18 @@ export class PageListOrdersComponent implements OnInit {
       }
     )
   }
+
+  /**
+   * plus besoin des ces méthodes car on a créé notre propre pipe
+   */
+  /*calculTotalHt(order: Order){
+    let resultHt = order.tjmHt * order.nbJours;
+    return resultHt;
+  }
+
+  calculTotalTtc(order: Order){
+    let resultTtc = order.tjmHt * (1 + order.tva/100) * order.nbJours;
+    return resultTtc;
+  }*/
 
 }

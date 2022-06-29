@@ -5,6 +5,10 @@
       <td>{{ order.tjmHt }}</td>
       <td>{{ order.nbJours }}</td>
       <td>{{ order.tva }}</td>
+      <!--<td>{{ calculTotalHt(order) }}</td>
+      <td>{{ calculTotalTtc(order) }}</td>-->
+      <td>{{ order | total: false }}</td>
+      <td>{{ order | total: true }}</td>
       <td>{{ order.typePresta }}</td>
       <td>{{ order.client }}</td>
       <td>{{ order.state }}</td>

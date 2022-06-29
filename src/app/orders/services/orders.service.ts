@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {BehaviorSubject, map, Observable, Subject, tap} from "rxjs";
 import {Order} from "../../core/models/order";
 import {environment} from "../../../environments/environment";
 
@@ -30,7 +30,14 @@ export class OrdersService {
   private behaviorSubject$ = new BehaviorSubject<string>("data init");
 
   constructor( private http: HttpClient) {
-    this.collection$ = this.http.get<Order[]>(`${this.urlApi}/orders`);
+    this.collection$ = this.http.get<Order[]>(`${this.urlApi}/orders`).pipe( //le pipe transforme les flux de données avant qu'elles n'arrivent aux composants
+      tap((listObjet: any[]) => console.log('AVANT : ', listObjet)),//le "tap" opérator RXJS transporte seulement le flux de données
+      map((listObjet: any[]) => { //le "map" opérator RXJS transporte et permet de modifier le flux de données
+        const listOrder = listObjet.map((objet: any) => new Order(objet));
+        console.log('APRES : ', listOrder)
+        return listOrder;
+      })
+    );
 
     //juste pour voir ce qu'on peut faire avec le subscribe: pour montrer les 3 callbacks
     this.collection$.subscribe(() => {})// à l'ancienne

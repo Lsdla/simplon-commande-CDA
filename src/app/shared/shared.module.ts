@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import {TemplatesModule} from "../templates/templates.module";
 import { BtnComponent } from './components/btn/btn.component';
 import { TableLightComponent } from './components/table-light/table-light.component';
+import { TotalPipe } from './pipes/total.pipe';
 
 
 
 @NgModule({
   declarations: [
     BtnComponent,
-    TableLightComponent
+    TableLightComponent,
+    TotalPipe
   ],
   imports: [
     CommonModule
@@ -17,7 +19,8 @@ import { TableLightComponent } from './components/table-light/table-light.compon
   exports: [
     TemplatesModule,
     BtnComponent,
-    TableLightComponent
+    TableLightComponent,
+    TotalPipe
   ]
 })
 export class SharedModule { }
