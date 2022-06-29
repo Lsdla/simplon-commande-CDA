@@ -5,17 +5,10 @@
       <td>{{ order.tjmHt | currency }}</td>
       <td>{{ order.nbJours }}</td>
       <td>{{ order.tva }}</td>
-      <!--<td>{{ calculTotalHt(order) }}</td>
-      <td>{{ calculTotalTtc(order) }}</td>-->
       <td>{{ order | total: false | currency }}</td>
       <td>{{ order | total: true | currency }}</td>
       <td>{{ order.typePresta }}</td>
       <td>{{ order.client }}</td>
-      <!--<td>{{ order.state }}</td>-->
-      <!-- <td [ngClass]="{
-                'state-canceled': order.state === 'CANCELED',
-                'state-option': order.state === 'OPTION',
-                'state-confirmed': order.state === 'CONFIRMED'}"> -->
       <td [appState]="order.state">
         <select (change)="onChangeState(order, $event)">
           <option value="null" disabled selected>Choisir un état</option> <!-- pour que ça fonctionne il faut enlever le selected du bas et le mettre à "" -->
@@ -27,7 +20,13 @@
       </td>
     </tr>
   </app-table-light>
-  <app-btn></app-btn>
-  <p> {{ testSubject$ | async }}</p>
-  <h1 *ngIf="testSubject$ | async as testText">{{ testText }}</h1>
+  <!-- <app-btn
+        [label]="'Ajouter une commande'"
+        [route]="'add'">
+    </app-btn>     -->
+  <!-- OU -->
+  <app-btn
+    label="Ajouter une commande"
+    route="add">
+  </app-btn>
 </app-template-full-width>
