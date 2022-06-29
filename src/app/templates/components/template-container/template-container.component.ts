@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-template-container',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateContainerComponent implements OnInit {
 
-  public title: string;
+  @Input() public title: string;
   constructor() {
     this.title = 'Ohhhhh le joli title';
   }
