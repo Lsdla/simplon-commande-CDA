@@ -6,6 +6,7 @@ import { TableLightComponent } from './components/table-light/table-light.compon
 import { TotalPipe } from './pipes/total.pipe';
 import { StateDirective } from './directives/state.directive';
 import {RouterLink, RouterModule} from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -25,7 +26,8 @@ import {RouterLink, RouterModule} from "@angular/router";
     BtnComponent,
     TableLightComponent,
     TotalPipe,
-    StateDirective
+    StateDirective,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }
