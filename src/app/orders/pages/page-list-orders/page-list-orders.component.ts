@@ -9,14 +9,17 @@ import {Order} from "../../../core/models/order";
 })
 export class PageListOrdersComponent implements OnInit {
 
-  public collection!: Order[];
-  constructor(private ordersService: OrdersService) { }
+  public parentCollection!: Order[];
+  public parentHeaders: string[];
+  constructor(private ordersService: OrdersService) {
+    this.parentHeaders = ["TjmHt", "NbJours", "TVA", "Type Presta", "Client", "State"];
+  }
 
   ngOnInit(): void {
     this.ordersService.collection$.subscribe(
       (data: Order[]) => {
-        this.collection = [...data];
-        console.log(this.collection = [...data]);
+        this.parentCollection = [...data];
+        console.log(this.parentCollection = [...data]);
       }
     )
   }
