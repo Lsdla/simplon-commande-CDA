@@ -101,4 +101,10 @@ export class OrdersService {
       map((object:Order) => new Order({...object}))
     );
   }
+
+  public add(newOrder: Order): Observable<Order>{
+    return this.http.post<Order>(`${this.urlApi}/orders`, newOrder).pipe(
+      map((object:Order) => new Order({...object}))
+    );
+  }
 }
